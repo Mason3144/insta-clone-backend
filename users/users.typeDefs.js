@@ -20,6 +20,6 @@ export default gql`
     ): User
   }
   type Query {
-    SeeProfile(username: String!): User
+    seeProfile(username: String!): User
   }
 `;
