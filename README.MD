@@ -4,9 +4,9 @@ Insta-clone Backend
 
 ## User:
 
-- [ ] Create Account
-- [ ] See Profile
-- [ ] Login
+- [x] Create Account
+- [x] See Profile
+- [x] Login
 - [ ] Edit Profile
 - [ ] Follow User
 - [ ] Unfollow User
