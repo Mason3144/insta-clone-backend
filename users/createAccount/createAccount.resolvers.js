@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";
-import client from "../client";
-import jwt from "jsonwebtoken";
+import client from "../../client";
 
 export default {
   Mutation: {
@@ -25,18 +24,6 @@ export default {
       } catch (e) {
         return e;
       }
-    },
-    login: async (_, { username, password }) => {
-      const user = await client.user.findFirst({ where: { username } });
-      if (!user) {
-        return { ok: false, error: "User not found." };
-      }
-      const checkPassword = await bcrypt.compare(password, user.password);
-      if (!checkPassword) {
-        return { ok: false, error: "Incorrect password." };
-      }
-      const token = await jwt.sign({ id: user.id }, process.env.SECRET_KEY);
-      return { ok: true, token };
     },
   },
 };
