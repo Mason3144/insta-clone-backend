@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/Mason3144/instar-clone-backend#readme",
   "dependencies": {
+    "@graphql-tools/load-files": "^6.6.1",
     "@prisma/client": "^4.2.1",
     "apollo-server": "^3.10.1",
-    "graphql-tools": "^7.0.2",
+    "dotenv": "^16.0.1",
+    "graphql-tools": "^8.3.3",
     "upgrade": "^1.1.0"
   },
   "devDependencies": {
