@@ -1,14 +1,13 @@
-import bcrypt from "bcrypt";
-import client from "../../client";
+import * as bcrypt from "bcrypt";
+import { Resolvers } from "../../types";
 
-export default {
+const resolvers: Resolvers = {
   Mutation: {
     editProfile: async (
       _,
       { firstName, lastName, username, email, password: newPassword },
-      { loggedInUser, protectResolver }
+      { loggedInUser, protectResolver, client }
     ) => {
-      // git add .
       try {
         protectResolver(loggedInUser);
         if (!loggedInUser) {
@@ -38,3 +37,5 @@ export default {
     },
   },
 };
+
+export default resolvers;

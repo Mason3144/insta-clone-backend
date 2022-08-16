@@ -1,13 +1,13 @@
-import bcrypt from "bcrypt";
-import client from "../../client";
+import * as bcrypt from "bcrypt";
+import { Resolvers } from "../../types";
 
-export default {
+const resolvers: Resolvers = {
   Mutation: {
     createAccount: async (
       _,
-      { firstName, lastName, username, email, password }
+      { firstName, lastName, username, email, password },
+      { client }
     ) => {
-      console.log(username);
       try {
         const existingUser = await client.user.findFirst({
           where: { OR: [{ username }, { email }] },
@@ -19,12 +19,15 @@ export default {
           throw new Error("Email already taken.");
         }
         const hash = await bcrypt.hash(password, 10);
-        return client.user.create({
+        await client.user.create({
           data: { firstName, lastName, username, email, password: hash },
         });
-      } catch (e) {
-        return e;
+        return { ok: true };
+      } catch (error) {
+        return { ok: false, error };
       }
     },
   },
 };
+
+export default resolvers;
