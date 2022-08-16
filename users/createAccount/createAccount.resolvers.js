@@ -7,14 +7,15 @@ export default {
       _,
       { firstName, lastName, username, email, password }
     ) => {
+      console.log(username);
       try {
         const existingUser = await client.user.findFirst({
           where: { OR: [{ username }, { email }] },
         });
-        if (existingUser.username === username) {
+        if (existingUser && existingUser.username === username) {
           throw new Error("Username already taken.");
         }
-        if (existingUser.email === email) {
+        if (existingUser && existingUser.email === email) {
           throw new Error("Email already taken.");
         }
         const hash = await bcrypt.hash(password, 10);
