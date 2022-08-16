@@ -1,3 +1,4 @@
+import { createWriteStream } from "fs";
 import * as bcrypt from "bcrypt";
 import { Resolvers } from "../../types";
 
@@ -5,9 +6,25 @@ const resolvers: Resolvers = {
   Mutation: {
     editProfile: async (
       _,
-      { firstName, lastName, username, email, password: newPassword },
+      {
+        firstName,
+        lastName,
+        username,
+        email,
+        password: newPassword,
+        bio,
+        avatar,
+      },
       { loggedInUser, protectResolver, client }
     ) => {
+      const {
+        file: { filename, createReadStream },
+      } = await avatar;
+      const readStream = createReadStream();
+      const writeStream = createWriteStream(
+        process.cwd() + "/uploads/" + filename
+      );
+      readStream.pipe(writeStream);
       try {
         protectResolver(loggedInUser);
         if (!loggedInUser) {
@@ -24,6 +41,7 @@ const resolvers: Resolvers = {
             lastName,
             username,
             email,
+            bio,
             ...(hash && { password: hash }), //if "hash" exsists password is "hash"
           },
         });
