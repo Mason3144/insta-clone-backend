@@ -11,7 +11,7 @@ import * as logger from "morgan";
 const PORT = process.env.PORT;
 
 const startServer = async () => {
-  const server = new ApolloServer({
+  const apollo = new ApolloServer({
     typeDefs,
     resolvers,
     context: async ({ req }) => {
@@ -26,13 +26,14 @@ const startServer = async () => {
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
   });
 
-  await server.start();
+  await apollo.start();
   const app = express();
   app.use(graphqlUploadExpress());
   app.use(logger("tiny"));
-  server.applyMiddleware({ app });
+  app.use("/static", express.static("uploads"));
+  apollo.applyMiddleware({ app });
 
   await new Promise<void>((func) => app.listen({ port: PORT }, func));
-  console.log(`🚀 Server: http://localhost:${PORT}${server.graphqlPath}`);
+  console.log(`🚀 Server: http://localhost:${PORT}${apollo.graphqlPath}`);
 };
 startServer();
