@@ -38,10 +38,6 @@ const resolvers: Resolvers = {
           // This is temporary, file will be saved in AWS soon
           // add a feature of automatically deleting previous photoes
         }
-
-        if (!loggedInUser) {
-          return { ok: false, error: "Please login first" };
-        }
         let hash = null;
         if (newPassword) {
           hash = await bcrypt.hash(newPassword, 10);
