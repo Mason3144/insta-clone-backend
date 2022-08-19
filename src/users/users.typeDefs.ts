@@ -17,5 +17,6 @@ export default gql`
     bio: String
     avatar: String
     following: [User]
+    followers: [User]
   }
 `;

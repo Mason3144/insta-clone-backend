@@ -9,7 +9,7 @@ const resolvers: Resolvers = {
     ) => {
       try {
         protectResolver(loggedInUser);
-        const userExisting = await client.user.findUnique({
+        const userExisting = await client.user.count({
           where: { username },
         });
         if (!userExisting) return { ok: false, error: "User doesn't exist" };
