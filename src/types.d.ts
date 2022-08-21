@@ -15,6 +15,7 @@ export type args = {
   bio: string;
   avatar: any;
   page: number;
+  lastId: number;
 };
 
 export type Resolver = (

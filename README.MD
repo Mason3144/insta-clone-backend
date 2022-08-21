@@ -11,6 +11,6 @@ Insta-clone Backend
 - [x] Change Avatar (Image Upload)
 - [x] Follow User
 - [x] Unfollow User
-- [] SeeFollowers and See Following with Pagination
+- [x] SeeFollowers and See Following with Pagination
 - [] Computed Fields
 - [] Search Users
