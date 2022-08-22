@@ -17,6 +17,8 @@ export type args = {
   page: number;
   lastId: number;
   keyword: string;
+  file: any;
+  caption: string;
 };
 
 export type Resolver = (

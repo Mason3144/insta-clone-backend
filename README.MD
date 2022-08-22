@@ -14,3 +14,22 @@ Insta-clone Backend
 - [x] SeeFollowers and See Following with Pagination
 - [x] Computed Fields
 - [x] Search Users
+
+## Photos
+
+- [ ] Upload Photo (Parse #)
+- [ ] See Photo
+- [ ] See Hashtags
+- [ ] Search Photos
+- [ ] Upload Photo
+- [ ] Search Photos
+- [ ] Edit Photo
+- [ ] Like / Unlike Photo
+- [ ] See Photo Likes
+- [ ] See Feed
+
+## Comments
+
+- [ ] Comment on Photo
+- [ ] Edit Comment
+- [ ] Delete Comment
