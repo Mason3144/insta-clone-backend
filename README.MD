@@ -12,5 +12,5 @@ Insta-clone Backend
 - [x] Follow User
 - [x] Unfollow User
 - [x] SeeFollowers and See Following with Pagination
-- [] Computed Fields
-- [] Search Users
+- [x] Computed Fields
+- [x] Search Users

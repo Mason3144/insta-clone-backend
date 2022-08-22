@@ -16,6 +16,7 @@ export type args = {
   avatar: any;
   page: number;
   lastId: number;
+  keyword: string;
 };
 
 export type Resolver = (
