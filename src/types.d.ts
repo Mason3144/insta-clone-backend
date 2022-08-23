@@ -6,7 +6,7 @@ type Context = {
   client: PrismaClient;
 };
 
-export type args = {
+type Args = {
   firstName: string;
   lastName: string;
   username: string;
@@ -19,14 +19,15 @@ export type args = {
   keyword: string;
   file: any;
   caption: string;
+  id: number;
 };
 
-export type Resolver = (
-  root: any,
-  args: args,
-  context: Context,
-  info: any
-) => any;
+type Root = {
+  id: number;
+  userId: number;
+};
+
+type Resolver = (root: Root, args: Args, context: Context, info: any) => any;
 
 export type Resolvers = {
   [key: string]: { [key: string]: Resolver };

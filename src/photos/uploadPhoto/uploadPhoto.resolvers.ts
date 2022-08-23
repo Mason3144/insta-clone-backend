@@ -17,14 +17,14 @@ const resolvers: Resolvers = {
         }));
       }
       return await client.photo.create({
-        include: { hashtags: true, user: true },
+        // include: { hashtags: true, user: true },
         data: {
           file,
           caption,
           user: {
             connect: {
               id: loggedInUser.id,
-              /// relation must connect
+              /// one to one or one to many relation must connect
             },
           },
           ...(hashtagObjs.length > 0 && {
