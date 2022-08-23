@@ -20,7 +20,7 @@ Insta-clone Backend
 - [x] Upload Photo (Parse #)
 - [x] See Photo
 - [x] See Hashtags
-- [ ] Search Photos
+- [x] Search Photos
 - [ ] Upload Photo
 - [ ] Search Photos
 - [ ] Edit Photo

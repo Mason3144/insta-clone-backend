@@ -1,3 +1,4 @@
+import client from "../client";
 import { Resolvers } from "../types";
 
 const resolvers: Resolvers = {
@@ -22,6 +23,15 @@ const resolvers: Resolvers = {
         // DB에서 loggedInUser.username를 찾고 그 username의 following안에서 id를 찾는다면 리턴함
       });
       return Boolean(isFollow);
+    },
+    photos: async ({ id }, { lastId }) => {
+      return client.user
+        .findUnique({ where: { id } })
+        .photos({
+          take: 5,
+          skip: lastId ? 1 : 0,
+          ...(lastId && { cursor: { id: lastId } }),
+        });
     },
   },
 };
