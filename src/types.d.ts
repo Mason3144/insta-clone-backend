@@ -20,6 +20,7 @@ type Args = {
   file: any;
   caption: string;
   id: number;
+  hashtag: string;
 };
 
 type Root = {
