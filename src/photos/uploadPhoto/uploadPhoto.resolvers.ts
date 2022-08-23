@@ -1,4 +1,5 @@
 import { Resolvers } from "../../types";
+import { processHashtags } from "../photos.utils";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -8,30 +9,20 @@ const resolvers: Resolvers = {
       { loggedInUser, protectResolver, client }
     ) => {
       protectResolver(loggedInUser);
-      let hashtagObjs = [];
-      if (caption) {
-        const hashtags = caption.match(/#[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\w]+/g);
-        hashtagObjs = hashtags.map((hashtag) => ({
-          where: { hashtag },
-          create: { hashtag },
-        }));
-      }
-      return await client.photo.create({
-        // include: { hashtags: true, user: true },
+
+      return client.photo.create({
         data: {
           file,
           caption,
+          hashtags: {
+            ...(caption && { connectOrCreate: processHashtags(caption) }),
+          },
           user: {
             connect: {
               id: loggedInUser.id,
               /// one to one or one to many relation must connect
             },
           },
-          ...(hashtagObjs.length > 0 && {
-            hashtags: {
-              connectOrCreate: hashtagObjs,
-            },
-          }),
         },
       });
     },
