@@ -10,6 +10,8 @@ const resolvers: Resolvers = {
       client.hashtag.findMany({
         where: { photos: { some: { id } } },
       }),
+    likes: async ({ id }) =>
+      client.user.count({ where: { likes: { some: { photoId: id } } } }),
   },
   Hashtag: {
     photos: async ({ id }, { lastId }) =>
@@ -22,6 +24,9 @@ const resolvers: Resolvers = {
 
     totalPhotos: async ({ id }) =>
       client.photo.count({ where: { hashtags: { some: { id } } } }),
+  },
+  Like: {
+    users: async (coot, { lastId }) => console.log(coot),
   },
 };
 
