@@ -1,4 +1,5 @@
 import { PrismaClient, User } from "@prisma/client";
+import { StringValueNode } from "graphql";
 
 type Context = {
   loggedInUser?: User;
@@ -20,7 +21,9 @@ type Args = {
   file: any;
   caption: string;
   id: number;
+  photoId: number;
   hashtag: string;
+  payload: string;
 };
 
 type Root = {
