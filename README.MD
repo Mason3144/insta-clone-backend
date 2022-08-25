@@ -26,10 +26,12 @@ Insta-clone Backend
 - [x] See Photo Likes
 - [x] See Feed
 - [x] See Photo Comments
-- [] Is Mine (on photo)
+- [x] Is Mine (on photo)
+- [] Delete photo
 
 ## Comments
 
 - [x] Comment on Photo
+- [x] Is Mine (on comment)
+- [] Delete comment
 - [ ] Edit Comment
-- [ ] Delete Comment (Is Mine)
