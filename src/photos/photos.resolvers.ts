@@ -12,6 +12,8 @@ const resolvers: Resolvers = {
       }),
     likes: async ({ id }) =>
       client.user.count({ where: { likes: { some: { photoId: id } } } }),
+    comments: async ({ id }) =>
+      client.comment.count({ where: { photoId: id } }),
   },
   Hashtag: {
     photos: async ({ id }, { lastId }) =>
@@ -24,9 +26,6 @@ const resolvers: Resolvers = {
 
     totalPhotos: async ({ id }) =>
       client.photo.count({ where: { hashtags: { some: { id } } } }),
-  },
-  Like: {
-    users: async (coot, { lastId }) => console.log(coot),
   },
 };
 
