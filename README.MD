@@ -34,4 +34,12 @@ Insta-clone Backend
 - [x] Comment on Photo
 - [x] Is Mine (on comment)
 - [x] Delete comment
-- [ ] Edit Comment
+- [x] Edit Comment
+
+## Refactor
+
+- [x] Mutation Responses
+
+## Extras
+
+- [] S3 Image Upload
