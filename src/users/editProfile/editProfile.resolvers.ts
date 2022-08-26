@@ -1,6 +1,7 @@
 import { createWriteStream } from "fs";
 import * as bcrypt from "bcrypt";
 import { Resolvers } from "../../types";
+import { uploadToS3 } from "../../shared/shared.utils";
 
 const PORT = process.env.PORT;
 
@@ -23,20 +24,7 @@ const resolvers: Resolvers = {
         protectResolver(loggedInUser);
         let avatarUrl = null;
         if (avatar) {
-          const {
-            file: { filename, createReadStream },
-          } = await avatar;
-          const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`
-            .toLowerCase()
-            .replace(/\s+/g, "");
-          const readStream = createReadStream();
-          const writeStream = createWriteStream(
-            process.cwd() + "/uploads/" + newFilename
-          );
-          readStream.pipe(writeStream);
-          avatarUrl = `http://localhost:${PORT}/static/${newFilename}`;
-          // This is temporary, file will be saved in AWS soon
-          // add a feature of automatically deleting previous photoes
+          avatarUrl = await uploadToS3(avatar, loggedInUser.id, "avatars");
         }
         let hash = null;
         if (newPassword) {
