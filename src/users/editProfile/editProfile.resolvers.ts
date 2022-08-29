@@ -1,9 +1,10 @@
 import { createWriteStream } from "fs";
 import * as bcrypt from "bcrypt";
 import { Resolvers } from "../../types";
-import { uploadToS3 } from "../../shared/shared.utils";
-
-const PORT = process.env.PORT;
+import {
+  handleDeletePhotoFromAWS,
+  uploadToS3,
+} from "../../shared/shared.utils";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -24,6 +25,13 @@ const resolvers: Resolvers = {
         protectResolver(loggedInUser);
         let avatarUrl = null;
         if (avatar) {
+          const user = await client.user.findUnique({
+            where: { id: loggedInUser.id },
+            select: { avatar: true },
+          });
+          if (user.avatar) {
+            await handleDeletePhotoFromAWS(user.avatar);
+          }
           avatarUrl = await uploadToS3(avatar, loggedInUser.id, "avatars");
         }
         let hash = null;

@@ -28,6 +28,8 @@ Insta-clone Backend
 - [x] See Photo Comments
 - [x] Is Mine (on photo)
 - [x] Delete photo
+- [] Multi file upload (https://gqlgen.com/reference/file-upload/)
+- [] Multi file delete (https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#deleteObjects-property)
 
 ## Comments
 
@@ -43,3 +45,4 @@ Insta-clone Backend
 ## Extras
 
 - [x] S3 Image Upload
+- [] S3 Delete Image Uploaded
