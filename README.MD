@@ -45,4 +45,11 @@ Insta-clone Backend
 ## Extras
 
 - [x] S3 Image Upload
-- [] S3 Delete Image Uploaded
+- [x] S3 Delete Image Uploaded
+
+## DMs
+
+-[x] See Rooms
+-[] Create Room
+-[] Send Message
+-[] Realtime Messages
