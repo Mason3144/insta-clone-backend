@@ -1,4 +1,5 @@
 import { PrismaClient, User } from "@prisma/client";
+import { NumericVersion } from "aws-sdk/clients/inspector";
 import { StringValueNode } from "graphql";
 
 type Context = {
@@ -24,6 +25,8 @@ type Args = {
   photoId: number;
   hashtag: string;
   payload: string;
+  roomId: number;
+  userId: number;
 };
 
 type Root = {

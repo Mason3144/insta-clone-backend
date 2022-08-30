@@ -49,7 +49,8 @@ Insta-clone Backend
 
 ## DMs
 
--[x] See Rooms
--[] Create Room
--[] Send Message
--[] Realtime Messages
+- [x] See Room
+- [x] Send Message (Create Room)
+- [] See Rooms
+- [] Computed Field
+- [] Realtime Messages
