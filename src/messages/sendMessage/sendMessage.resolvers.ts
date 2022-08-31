@@ -1,3 +1,5 @@
+import { NEW_MESSAGE } from "../../constants";
+import pubsub from "../../pubsub";
 import { Resolvers } from "../../types";
 
 const resolvers: Resolvers = {
@@ -34,13 +36,14 @@ const resolvers: Resolvers = {
           return { ok: false, error: "the Room not found" };
         }
       }
-      await client.message.create({
+      const message = await client.message.create({
         data: {
           payload,
           room: { connect: { id: room.id } },
           user: { connect: { id: loggedInUser.id } },
         },
       });
+      pubsub.publish(NEW_MESSAGE, { roomUpdates: { ...message } });
       return { ok: true };
     },
   },
