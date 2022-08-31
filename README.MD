@@ -52,5 +52,6 @@ Insta-clone Backend
 - [x] See Rooms
 - [x] Send Message (Create Room)
 - [x] See Room
-- [] Computed Field
+- [x] Computed Field
+- [] See Message
 - [] Realtime Messages
