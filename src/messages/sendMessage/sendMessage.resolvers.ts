@@ -18,23 +18,17 @@ const resolvers: Resolvers = {
         if (!user) {
           return { ok: false, error: "the User not found" };
         }
-        const newRoom = await client.room.create({
+        room = await client.room.create({
           data: {
             users: { connect: [{ id: userId }, { id: loggedInUser.id }] },
           },
         });
-        room = await client.message.create({
-          data: {
-            payload,
-            room: { connect: { id: newRoom.id } },
-            user: { connect: { id: loggedInUser.id } },
-          },
-        });
       } else if (roomId) {
-        room = await client.room.count({
+        room = await client.room.findUnique({
           where: {
             id: roomId,
           },
+          select: { id: true },
         });
         if (!room) {
           return { ok: false, error: "the Room not found" };
