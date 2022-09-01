@@ -39,3 +39,7 @@ type Resolver = (root: Root, args: Args, context: Context, info: any) => any;
 export type Resolvers = {
   [key: string]: { [key: string]: Resolver };
 };
+
+export type subscriptionResolver = {
+  [key: string]: { [key: string]: { [key: string]: Resolver } };
+};

@@ -2,7 +2,7 @@ import { User } from "@prisma/client";
 import * as jwt from "jsonwebtoken";
 import client from "../client";
 
-export const getLoggedinUser = async (token: string) => {
+export const getLoggedinUser = async (token: string | unknown) => {
   try {
     if (!token) {
       return null;
