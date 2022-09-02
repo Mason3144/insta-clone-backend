@@ -2,6 +2,9 @@ import { PrismaClient, User } from "@prisma/client";
 import { NumericVersion } from "aws-sdk/clients/inspector";
 import { StringValueNode } from "graphql";
 
+type UploadFile = (file: File, userId: number, postId: number) => any;
+type File = [{ file: { filename: string } }];
+
 type Context = {
   loggedInUser?: User;
   protectResolver?: any;

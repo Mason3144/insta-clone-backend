@@ -1,5 +1,5 @@
-import { uploadToS3 } from "../../shared/shared.utils";
-import { Resolvers } from "../../types";
+import { uploadFile, uploadToS3 } from "../../shared/shared.utils";
+import { Resolvers, UploadFile } from "../../types";
 import { processHashtags } from "../photos.utils";
 
 const resolvers: Resolvers = {
@@ -10,10 +10,8 @@ const resolvers: Resolvers = {
       { loggedInUser, protectResolver, client }
     ) => {
       protectResolver(loggedInUser);
-      const fileUrl = await uploadToS3(file, loggedInUser.id, "photos");
-      return client.photo.create({
+      const post = await client.photo.create({
         data: {
-          file: fileUrl,
           caption,
           hashtags: {
             ...(caption && { connectOrCreate: processHashtags(caption) }),
@@ -21,11 +19,15 @@ const resolvers: Resolvers = {
           user: {
             connect: {
               id: loggedInUser.id,
-              /// one to one or one to many relation must connect
+              // / one to one or one to many relation must connect
             },
           },
         },
       });
+
+      await Promise.all([uploadFile(file, loggedInUser.id, post.id)]);
+
+      return { ok: true };
     },
   },
 };

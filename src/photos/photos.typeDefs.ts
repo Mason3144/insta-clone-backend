@@ -14,7 +14,10 @@ export default gql`
     isMine: Boolean!
   }
   # relation field or whatever can be exposed with computed field  ex) user,hashtags
-
+  type File {
+    id: Int!
+    url: String!
+  }
   type Hashtag {
     id: Int!
     hashtag: String!

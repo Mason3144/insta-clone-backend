@@ -26,16 +26,28 @@ model User {
   following User[] @relation("FollowRelation")
   rooms Room[]
   message Message[]
+  files File[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 
+model File {
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [userId],references: [id], onDelete: Cascade)
+  userId Int
+  photo Photo @relation(fields: [photoId],references: [id], onDelete: Cascade)
+  photoId Int
+  url String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Photo {
   id Int @id @default(autoincrement())
   user User @relation(fields: [userId],references: [id], onDelete: Cascade)
   userId Int
-  file String
+  files File[]
   caption String?
   hashtags Hashtag[]
   likes Like[] 
