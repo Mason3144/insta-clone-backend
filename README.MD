@@ -28,8 +28,8 @@ Insta-clone Backend
 - [x] See Photo Comments
 - [x] Is Mine (on photo)
 - [x] Delete photo
-- [] Multi file upload (https://gqlgen.com/reference/file-upload/)
-- [] Multi file delete (https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#deleteObjects-property)
+- [x] Multi file upload (https://gqlgen.com/reference/file-upload/)
+- [x] Multi file delete (https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#deleteObjects-property)
 
 ## Comments
 
@@ -54,4 +54,4 @@ Insta-clone Backend
 - [x] See Room
 - [x] Computed Field
 - [x] See Message
-- [] Realtime Messages
+- [x] Realtime Messages

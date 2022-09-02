@@ -44,26 +44,12 @@ export const uploadToS3 = async (
       .promise();
     return Location;
   });
-// const { filename, createReadStream } = await files;
-// const readStream = createReadStream();
-// const objName = `${folderName}/${userId}-${Date.now()}-${filename
-//   .toLowerCase()
-//   .replace(/\s+/g, "")}`;
-// const { Location } = await new AWS.S3()
-//   .upload({
-//     Bucket,
-//     Key: objName,
-//     ACL: "public-read",
-//     Body: readStream,
-//   })
-//   .promise();
-// return Location;
-
 const s3 = new AWS.S3();
 
-export const handleDeletePhotoFromAWS = async (fileUrl: string) => {
-  const decodedUrl = decodeURI(fileUrl);
-  const Key = decodedUrl.split("amazonaws.com/")[1];
+export const handleDeletePhotoFromAWS = async (files) => {
+  const decodedUrl = decodeURI(files);
+  const fileName = decodedUrl.split("amazonaws.com/")[1];
+  const Key = fileName.replace("%2C", ","); //decodeURI doesn't work well with ","
 
   await s3
     .deleteObject({
