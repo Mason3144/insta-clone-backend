@@ -13,10 +13,10 @@ const resolvers: Resolvers = {
           where: { OR: [{ username }, { email }] },
         });
         if (existingUser && existingUser.username === username) {
-          throw new Error("Username already taken.");
+          return { ok: false, error: "Username already taken." };
         }
         if (existingUser && existingUser.email === email) {
-          throw new Error("Email already taken.");
+          return { ok: false, error: "Email already taken." };
         }
         const hash = await bcrypt.hash(password, 10);
         await client.user.create({

@@ -1,5 +1,5 @@
-import { uploadFile, uploadToS3 } from "../../shared/shared.utils";
-import { Resolvers, UploadFile } from "../../types";
+import { uploadFile } from "../../shared/shared.utils";
+import { Resolvers } from "../../types";
 import { processHashtags } from "../photos.utils";
 
 const resolvers: Resolvers = {
