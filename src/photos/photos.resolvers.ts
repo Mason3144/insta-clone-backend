@@ -21,6 +21,7 @@ const resolvers: Resolvers = {
       return userId === loggedInUser.id;
     },
   },
+
   Hashtag: {
     photos: async ({ id }, { lastId }) =>
       client.photo.findMany({

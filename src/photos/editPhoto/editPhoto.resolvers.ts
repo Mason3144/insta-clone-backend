@@ -1,4 +1,3 @@
-import { uploadFile } from "../../shared/shared.utils";
 import { Resolvers } from "../../types";
 import { processHashtags } from "../photos.utils";
 
@@ -18,7 +17,7 @@ const resolvers: Resolvers = {
       if (!oldPhoto) {
         return { ok: false, error: "Photo not found or this is not your post" };
       }
-      const post = await client.photo.update({
+      await client.photo.update({
         where: { id },
         data: {
           caption,
@@ -28,11 +27,6 @@ const resolvers: Resolvers = {
           },
         },
       });
-      if (file) {
-        await Promise.all([uploadFile(file, loggedInUser.id, post.id)]);
-        //Array 데이터를 받을때 Promise.all을 사용하여
-        //모든 데이터를 받고 넘어갈수있도록 동기식 처리해주어야함
-      }
 
       return { ok: true };
     },

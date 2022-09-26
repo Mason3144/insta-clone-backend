@@ -7,16 +7,17 @@ export const getLoggedinUser = async (token: string | unknown) => {
     if (!token) {
       return null;
     }
-    const verifiedToken: any = await jwt.verify(token, process.env.SECRET_KEY);
-    if ("id" in verifiedToken) {
-      const user = await client.user.findUnique({
-        where: { id: verifiedToken["id"] },
-      });
-      if (user) {
-        return user;
-      }
+    const { id } = await jwt.verify(token, process.env.SECRET_KEY);
+    if (!id) {
+      return null;
     }
-    return null;
+    const user = await client.user.findUnique({
+      where: { id },
+    });
+    if (!user) {
+      return null;
+    }
+    return user;
   } catch {
     return null;
   }
@@ -24,6 +25,6 @@ export const getLoggedinUser = async (token: string | unknown) => {
 
 export const protectResolver = (user: User) => {
   if (!user) {
-    throw new Error("Please login first.");
+    throw new Error("Token doesn't exist");
   }
 };
