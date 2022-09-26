@@ -20,6 +20,14 @@ const resolvers: Resolvers = {
       }
       return userId === loggedInUser.id;
     },
+    isLiked: async ({ id }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return false;
+      }
+      return client.like.count({
+        where: { photoId: id, user: { some: { id: loggedInUser.id } } },
+      });
+    },
   },
 
   Hashtag: {

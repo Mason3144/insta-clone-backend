@@ -12,6 +12,7 @@ export default gql`
     createdAt: String!
     updatedAt: String!
     isMine: Boolean!
+    isLiked:Boolean!
   }
   # relation field or whatever can be exposed with computed field  ex) user,hashtags
   type Hashtag {
