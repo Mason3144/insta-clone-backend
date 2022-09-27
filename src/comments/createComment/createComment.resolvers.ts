@@ -1,4 +1,3 @@
-import { connect } from "http2";
 import { Resolvers } from "../../types";
 
 const resolvers: Resolvers = {
@@ -14,14 +13,14 @@ const resolvers: Resolvers = {
         return { ok: false, error: "Photo Not Found" };
       }
 
-      await client.comment.create({
+      const newComment = await client.comment.create({
         data: {
           payload,
           photo: { connect: { id: photoId } },
           user: { connect: { id: loggedInUser.id } },
         },
       });
-      return { ok: true };
+      return { ok: true, id: newComment.id };
     },
   },
 };

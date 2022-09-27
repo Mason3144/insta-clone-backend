@@ -8,7 +8,8 @@ const resolvers: Resolvers = {
       { protectResolver, loggedInUser, client }
     ) => {
       protectResolver(loggedInUser);
-      const photoExsist = client.photo.count({ where: { id } });
+      const photoExsist = await client.photo.count({ where: { id } });
+
       if (!photoExsist) {
         return { ok: false, error: "Photo not found" };
       }

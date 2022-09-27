@@ -12,8 +12,12 @@ const resolvers: Resolvers = {
       }),
     likes: async ({ id }) =>
       client.user.count({ where: { likes: { some: { photoId: id } } } }),
-    comments: async ({ id }) =>
+    commentNumber: async ({ id }) =>
       client.comment.count({ where: { photoId: id } }),
+    comments: async ({ id }) =>
+      client.photo
+        .findUnique({ where: { id } })
+        .comment({ include: { user: true } }),
     isMine: ({ userId }, _, { loggedInUser }) => {
       if (!loggedInUser) {
         return false;
