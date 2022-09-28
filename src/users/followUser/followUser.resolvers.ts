@@ -16,15 +16,17 @@ const resolvers: Resolvers = {
         if (username === loggedInUser.username)
           return { ok: false, error: "Cannot follow yourself" };
 
-        const isFollow = await client.user.findFirst({
-          where: { following: { some: { username } } },
+        const isFollow = await client.user.count({
+          where: {
+            username,
+            followers: { some: { username: loggedInUser.username } },
+          },
         });
         if (isFollow) {
           await client.user.update({
             where: { id: loggedInUser.id },
             data: { following: { disconnect: { username } } },
           });
-          console.log(`${loggedInUser.username} is Unfollowing ${username}`);
         } else {
           await client.user.update({
             where: { id: loggedInUser.id },
@@ -34,7 +36,6 @@ const resolvers: Resolvers = {
               },
             },
           });
-          console.log(`${loggedInUser.username} is Following ${username}`);
         }
         return { ok: true };
       } catch (error) {
