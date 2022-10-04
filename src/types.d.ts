@@ -30,6 +30,7 @@ type Args = {
   payload: string;
   roomId: number;
   userId: number;
+  offset: number;
 };
 
 type Root = {

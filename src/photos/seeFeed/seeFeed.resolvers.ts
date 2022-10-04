@@ -2,9 +2,11 @@ import { Resolvers } from "../../types";
 
 const resolvers: Resolvers = {
   Query: {
-    seeFeed: (_, __, { client, protectResolver, loggedInUser }) => {
+    seeFeed: (_, { offset }, { client, protectResolver, loggedInUser }) => {
       protectResolver(loggedInUser);
       return client.photo.findMany({
+        take: 2,
+        skip: offset,
         where: {
           OR: [
             { user: { followers: { some: { id: loggedInUser.id } } } },
