@@ -2,12 +2,13 @@ import { User } from "@prisma/client";
 import * as jwt from "jsonwebtoken";
 import client from "../client";
 
-export const getLoggedinUser = async (token: string | unknown) => {
+export const getLoggedinUser = async (token: any) => {
   try {
     if (!token) {
       return null;
     }
-    const { id } = await jwt.verify(token, process.env.SECRET_KEY);
+    const currectToken = token.replace(/["]+/g, "");
+    const { id } = await jwt.verify(currectToken, process.env.SECRET_KEY);
     if (!id) {
       return null;
     }
