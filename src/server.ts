@@ -39,8 +39,9 @@ const startServer = async (): Promise<void> => {
     wsServer
   );
 
-  const apollo: ApolloServer<ExpressContext> = new ApolloServer({
+  const apollo: ApolloServer = new ApolloServer({
     schema,
+
     context: async ({ req }) => {
       return {
         loggedInUser: await getLoggedinUser(req.headers.token),
@@ -48,6 +49,7 @@ const startServer = async (): Promise<void> => {
         client: client,
       };
     },
+
     csrfPrevention: true,
     cache: "bounded",
     plugins: [
@@ -61,8 +63,8 @@ const startServer = async (): Promise<void> => {
           };
         },
       },
-      ApolloServerPluginLandingPageLocalDefault({ embed: true }),
-      // ApolloServerPluginLandingPageGraphQLPlayground(),
+      // ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+      ApolloServerPluginLandingPageGraphQLPlayground(),
     ],
   });
 
