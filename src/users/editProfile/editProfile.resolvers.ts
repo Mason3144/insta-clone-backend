@@ -53,7 +53,7 @@ const resolvers: Resolvers = {
         if (!updatedUser.id) {
           return { ok: false, error: "Could not update" };
         }
-        return { ok: true };
+        return { ok: true, user: updatedUser };
       } catch (error) {
         return { ok: false, error };
       }

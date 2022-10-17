@@ -5,7 +5,10 @@ const resolvers: Resolvers = {
   Room: {
     users: ({ id }, _, { client }) =>
       client.room.findUnique({ where: { id } }).users(),
-    messages: ({ id }) => client.message.findMany({ where: { roomId: id } }),
+    messages: ({ id }) =>
+      client.message.findMany({
+        where: { roomId: id },
+      }),
     unreadTotal: ({ id }, _, { client, loggedInUser }) => {
       if (!loggedInUser) {
         return 0;

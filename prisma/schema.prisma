@@ -87,7 +87,7 @@ model Message{
   payload String
   user User @relation(fields: [userId],references: [id])
   userId Int
-  room Room @relation(fields: [roomId],references: [id])
+  room Room @relation(fields: [roomId],references: [id],onDelete: Cascade)
   roomId Int
   read Boolean @default(false)
   createdAt DateTime @default(now())

@@ -12,7 +12,7 @@ const resolvers: Resolvers = {
       const followers = await client.user
         .findUnique({ where: { username } })
         .followers({
-          take: 5,
+          take: 10,
           skip: (page - 1) * 5,
         });
       const totalFollowers = await client.user.count({

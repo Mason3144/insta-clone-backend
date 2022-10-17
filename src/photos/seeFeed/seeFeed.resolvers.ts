@@ -5,7 +5,7 @@ const resolvers: Resolvers = {
     seeFeed: (_, { offset }, { client, protectResolver, loggedInUser }) => {
       protectResolver(loggedInUser);
       return client.photo.findMany({
-        take: 2,
+        take: 3,
         skip: offset,
         where: {
           OR: [

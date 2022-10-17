@@ -17,6 +17,7 @@ export const uploadToS3 = async (
   const {
     file: { filename, createReadStream },
   } = await file;
+
   const readStream = createReadStream();
   const objName = `${folderName}/${userId}-${Date.now()}-${filename
     .toLowerCase()

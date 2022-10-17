@@ -2,6 +2,6 @@ import { gql } from "apollo-server-express";
 
 export default gql`
   type Query {
-    seePhotoComments(photoId: Int!, lastId: Int): [Comment]!
+    seePhotoComments(photoId: Int!, offset: Int): [Comment]
   }
 `;

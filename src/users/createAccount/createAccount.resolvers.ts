@@ -19,9 +19,17 @@ const resolvers: Resolvers = {
           return { ok: false, error: "Email already taken." };
         }
         const hash = await bcrypt.hash(password, 10);
-        await client.user.create({
+        const newUser = await client.user.create({
           data: { firstName, lastName, username, email, password: hash },
         });
+        // await client.user.update({
+        //   where: { id: 4 },
+        //   data: {
+        //     following: {
+        //       connect: { username: newUser.username },
+        //     },
+        //   },
+        // });
         return { ok: true };
       } catch (error) {
         return { ok: false, error };
