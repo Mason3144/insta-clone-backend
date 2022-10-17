@@ -126,8 +126,8 @@ var startServer = function () { return __awaiter(void 0, void 0, void 0, functio
                                 });
                             },
                         },
-                        // ApolloServerPluginLandingPageLocalDefault({ embed: true }),
-                        (0, apollo_server_core_1.ApolloServerPluginLandingPageGraphQLPlayground)(),
+                        (0, apollo_server_core_1.ApolloServerPluginLandingPageLocalDefault)({ embed: true }),
+                        // ApolloServerPluginLandingPageGraphQLPlayground(),
                     ],
                 });
                 return [4 /*yield*/, apollo.start()];

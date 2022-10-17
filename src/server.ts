@@ -63,8 +63,8 @@ const startServer = async (): Promise<void> => {
           };
         },
       },
-      // ApolloServerPluginLandingPageLocalDefault({ embed: true }),
-      ApolloServerPluginLandingPageGraphQLPlayground(),
+      ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+      // ApolloServerPluginLandingPageGraphQLPlayground(),
     ],
   });
 
