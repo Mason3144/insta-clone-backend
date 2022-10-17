@@ -41,7 +41,7 @@ const startServer = async (): Promise<void> => {
 
   const apollo: ApolloServer = new ApolloServer({
     schema,
-    // introspection: true,
+    introspection: true,
     context: async ({ req }) => {
       return {
         loggedInUser: await getLoggedinUser(req.headers.token),
