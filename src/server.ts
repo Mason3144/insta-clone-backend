@@ -14,8 +14,6 @@ import {
 import { WebSocketServer } from "ws";
 import { useServer } from "graphql-ws/lib/use/ws";
 
-import * as logger from "morgan";
-
 const startServer = async (): Promise<void> => {
   const app = express();
   app.use(graphqlUploadExpress());
