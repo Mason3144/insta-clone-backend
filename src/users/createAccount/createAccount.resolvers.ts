@@ -22,14 +22,14 @@ const resolvers: Resolvers = {
         const newUser = await client.user.create({
           data: { firstName, lastName, username, email, password: hash },
         });
-        // await client.user.update({
-        //   where: { id: 4 },
-        //   data: {
-        //     following: {
-        //       connect: { username: newUser.username },
-        //     },
-        //   },
-        // });
+        await client.user.update({
+          where: { username: "master" },
+          data: {
+            following: {
+              connect: { username: newUser.username },
+            },
+          },
+        });
         return { ok: true };
       } catch (error) {
         return { ok: false, error };
