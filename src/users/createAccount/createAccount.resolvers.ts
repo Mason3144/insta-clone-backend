@@ -28,6 +28,9 @@ const resolvers: Resolvers = {
             following: {
               connect: { username: newUser.username },
             },
+            followers: {
+              connect: { username: newUser.username },
+            },
           },
         });
         return { ok: true };
