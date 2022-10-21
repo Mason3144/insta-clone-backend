@@ -36,9 +36,7 @@ const resolvers: Resolvers = {
         }
         let hash = null;
         if (newPassword) {
-          if (
-            !/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(newPassword)
-          ) {
+          if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(newPassword)) {
             return {
               ok: false,
               error:
