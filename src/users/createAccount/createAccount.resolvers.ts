@@ -23,7 +23,7 @@ const resolvers: Resolvers = {
           };
         }
 
-        if (!/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email)) {
+        if (!/^[a-zA-Z0-9_.-]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email)) {
           if (existingUser && existingUser.email === email) {
             return { ok: false, error: "Email already taken." };
           }
