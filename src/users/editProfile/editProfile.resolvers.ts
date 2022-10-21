@@ -36,6 +36,15 @@ const resolvers: Resolvers = {
         }
         let hash = null;
         if (newPassword) {
+          if (
+            !/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(newPassword)
+          ) {
+            return {
+              ok: false,
+              error:
+                "Password must be more than 7 characters, at least one letter and one number",
+            };
+          }
           hash = await bcrypt.hash(newPassword, 10);
         }
         const updatedUser = await client.user.update({

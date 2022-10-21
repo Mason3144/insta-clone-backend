@@ -12,11 +12,30 @@ const resolvers: Resolvers = {
         const existingUser = await client.user.findFirst({
           where: { OR: [{ username }, { email }] },
         });
-        if (existingUser && existingUser.username === username) {
-          return { ok: false, error: "Username already taken." };
+
+        if (username.length < 3) {
+          if (existingUser && existingUser.username === username) {
+            return { ok: false, error: "Username already taken." };
+          }
+          return {
+            ok: false,
+            error: "Username must be more than 2 characters",
+          };
         }
-        if (existingUser && existingUser.email === email) {
-          return { ok: false, error: "Email already taken." };
+
+        if (!/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email)) {
+          if (existingUser && existingUser.email === email) {
+            return { ok: false, error: "Email already taken." };
+          }
+          return { ok: false, error: "Wrong email address" };
+        }
+
+        if (!/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(password)) {
+          return {
+            ok: false,
+            error:
+              "Password must be more than 7 characters, at least one letter and one number",
+          };
         }
         const hash = await bcrypt.hash(password, 10);
         const newUser = await client.user.create({
