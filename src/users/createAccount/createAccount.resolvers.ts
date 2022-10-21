@@ -30,7 +30,9 @@ const resolvers: Resolvers = {
           return { ok: false, error: "Wrong email address" };
         }
 
-        if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+        if (
+          !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d#?!@$%^&*-]{8,}$/.test(password)
+        ) {
           return {
             ok: false,
             error:

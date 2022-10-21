@@ -36,7 +36,11 @@ const resolvers: Resolvers = {
         }
         let hash = null;
         if (newPassword) {
-          if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(newPassword)) {
+          if (
+            !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d#?!@$%^&*-]{8,}$/.test(
+              newPassword
+            )
+          ) {
             return {
               ok: false,
               error:
@@ -45,6 +49,7 @@ const resolvers: Resolvers = {
           }
           hash = await bcrypt.hash(newPassword, 10);
         }
+
         const updatedUser = await client.user.update({
           where: { id: loggedInUser.id },
           data: {
