@@ -1,8 +1,28 @@
-# InstaClone
+## GraphQL을 이용한 인스타그램 클론 코딩(Backend)
 
-Insta-clone Backend
+### Server
 
-## User:
+- Node.js, Typescript
+- Apollo server express, GraphQL
+- AWS-S3
+- Websocket (Graphql subscription)
+
+### DB
+
+- Postgres
+- Prisma ORM
+
+### 배포
+
+- Heroku
+
+### Frontend
+
+- https://github.com/Mason3144/insta-clone-native
+
+## 진행현황
+
+### User:
 
 - [x] Create Account
 - [x] See Profile
@@ -15,7 +35,7 @@ Insta-clone Backend
 - [x] Computed Fields
 - [x] Search Users
 
-## Photos
+### Photos
 
 - [x] Upload Photo (Parse #)
 - [x] See Photo
@@ -31,23 +51,23 @@ Insta-clone Backend
 - [x] Multi file upload (https://gqlgen.com/reference/file-upload/)
 - [x] Multi file delete (https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#deleteObjects-property)
 
-## Comments
+### Comments
 
 - [x] Comment on Photo
 - [x] Is Mine (on comment)
 - [x] Delete comment
 - [x] Edit Comment
 
-## Refactor
+### Refactor
 
 - [x] Mutation Responses
 
-## Extras
+### Extras
 
 - [x] S3 Image Upload
 - [x] S3 Delete Image Uploaded
 
-## DMs
+### DMs
 
 - [x] See Rooms
 - [x] Send Message (Create Room)

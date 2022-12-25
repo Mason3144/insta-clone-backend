@@ -82,3 +82,5 @@ const startServer = async (): Promise<void> => {
   // console.log(`🚀 Server: http://localhost:${PORT}${apollo.graphqlPath}`);
 };
 startServer();
+
+export default startServer;

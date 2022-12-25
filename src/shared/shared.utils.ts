@@ -1,6 +1,4 @@
 import * as AWS from "aws-sdk";
-import client from "../client";
-import { UploadFile } from "../types";
 
 const Bucket = "insta-clone-2022";
 
@@ -19,6 +17,7 @@ export const uploadToS3 = async (
   } = await file;
 
   const readStream = createReadStream();
+
   const objName = `${folderName}/${userId}-${Date.now()}-${filename
     .toLowerCase()
     .replace(/\s+/g, "")}`;
