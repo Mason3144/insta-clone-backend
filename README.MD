@@ -1,4 +1,12 @@
-## GraphQL을 이용한 인스타그램 클론 코딩(Backend)
+# GraphQL을 이용한 인스타그램 앱 클론 코딩(Backend)
+
+Node.js 기반으로 GraphQL API 서버입니다.
+좀더 자세한 포트폴리오는 프론트엔드 깃헙에 서술되어있습니다.
+
+### <a href="https://github.com/Mason3144/insta-clone-native"> [포트폴리오]</a>
+
+<br>
+<br>
 
 ### Server
 
